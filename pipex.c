@@ -73,19 +73,91 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (arr);
 }
 
-int main(int ac, char**av) {
-    char *const env[] = {NULL};
-    ac = 3;
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/wait.h>
 
-    av += 1;
-    av[0] = ft_strjoin("/bin/", av[0]);
+int main(int argc, char **argv) {
+	argc = 3;
+    int pipe_fd[2]; // 파이프 파일 디스크립터 배열
+    int pid;
 
-    execve(av[0], av, env);
+    // 파이프 생성
+    if (pipe(pipe_fd) == -1) {
+        perror("pipe error");
+        return 1;
+    }
 
-    perror("execve"); // execve 함수가 실패한 경우 에러 메시지 출력
+    pid = fork();
+    if (pid == 0) {
+        // 자식 프로세스
+
+        // 표준 출력을 파이프의 쓰기 단에 연결
+        dup2(pipe_fd[1], STDOUT_FILENO);
+        close(pipe_fd[0]);
+        close(pipe_fd[1]);
+
+        char *const env[] = {NULL};
+        argv += 1;
+        argv[0] = ft_strjoin("/bin/", argv[0]);
+
+        execve(argv[0], argv, env);
+        perror("execve"); // execve 함수가 실패한 경우 에러 메시지 출력
+        exit(1);
+    } else if (pid > 0) {
+        // 부모 프로세스
+
+        // 표준 입력을 파이프의 읽기 단에 연결
+        dup2(pipe_fd[0], STDIN_FILENO);
+        close(pipe_fd[0]);
+        close(pipe_fd[1]);
+
+        // 부모 프로세스에서 자식 프로세스의 종료를 기다림
+        int status;
+		char arr[20];
+        waitpid(pid, &status, 0);
+
+		read(STDIN_FILENO, arr, sizeof(arr)); // 파이프를 통해 데이터 수신
+		printf("%s\n", arr);
+        
+        // 여기서부터는 표준 입력으로 파이프로부터 읽은 데이터를 사용하여 추가 작업을 수행할 수 있습니다.
+    } else {
+        perror("fork error");
+        return 1;
+    }
 
     return 0;
 }
+
+
+// int main(int ac, char**av) {
+
+
+
+//     int pipe_fd[2]; // 파이프 파일 디스크립터 배열
+// 	int pid;
+
+//     // 파이프 생성
+//     if (pipe(pipe_fd) == -1) {
+//         perror("pipe error");
+//         return 1;
+//     }
+// 	pid = fork();
+// 	if (pid == 0)
+// 	{
+// 		char *const env[] = {NULL};
+// 		ac = 3;
+
+// 		av += 1;
+// 		av[0] = ft_strjoin("/bin/", av[0]);
+
+// 		execve(av[0], av, env);
+// 		perror("execve"); // execve 함수가 실패한 경우 에러 메시지 출력
+
+// 		return 0;
+// 	}
+// }
 
 
  
