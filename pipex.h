@@ -6,7 +6,7 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 04:35:31 by sumjo             #+#    #+#             */
-/*   Updated: 2023/08/18 06:15:47 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/18 07:18:14 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ typedef struct s_var
 {
 	int fd_open;
 	int fd_close;
-	char **envp;
-	char *path;
+	char **env;
 	char **cmd1;
 	char **cmd2;
 }				t_var;
