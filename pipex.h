@@ -6,7 +6,7 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 04:35:31 by sumjo             #+#    #+#             */
-/*   Updated: 2023/08/18 07:18:14 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/18 07:35:51 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,9 @@ void	check_cmd2(t_var *var, char *cmd);
 
 void	ft_free_split(char **arr, int i);
 char	*ft_inside(char const *s, char c);
-int	ft_word_num(char const *s, char c, int *n);
+int	ft_word_num(char const *s, char c);
 int	ft_word_len(char const *s, char c);
+void	make_arr(char const *s, char c, char **arr);
 
 
 #endif

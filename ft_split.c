@@ -6,7 +6,7 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 07:27:43 by sumjo             #+#    #+#             */
-/*   Updated: 2023/08/18 07:27:43 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/18 07:44:12 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,6 @@ int	ft_word_len(char const *s, char c)
 	while (s[i] && s[i] != c)
 		i++;
 	return (i);
-}
-
-void	ft_free_split(char **arr, int i)
-{
-	int	j;
-
-	j = 0;
-	while (j <= i)
-	{
-		free(arr[j]);
-		j++;
-	}
-	free (arr);
 }
 
 char	*ft_inside(char const *s, char c)
@@ -53,12 +40,11 @@ char	*ft_inside(char const *s, char c)
 	return (arr);
 }
 
-int	ft_word_num(char const *s, char c, int *n)
+int	ft_word_num(char const *s, char c)
 {
 	int	i;
 	int	cnt;
 
-	*n = 0;
 	i = 0;
 	cnt = 0;
 	while (s[i])
@@ -73,15 +59,11 @@ int	ft_word_num(char const *s, char c, int *n)
 	return (cnt);
 }
 
-
-char	**ft_split(char const *s, char c)
+void	make_arr(char const *s, char c, char **arr)
 {
-	char	**arr;
-	int		i;
+	int	i;
 
-	arr = malloc(sizeof(char *) * (ft_word_num(s, c, &i) + 1));
-	if (!arr)
-		return (0);
+	i = 0;
 	while (*s)
 	{
 		while (*s && *s == c)
@@ -91,8 +73,8 @@ char	**ft_split(char const *s, char c)
 			*(arr + i) = ft_inside(s, c);
 			if (*(arr + i) == 0)
 			{
-				ft_free_split(arr, i);
-				return (0);
+				perror("split error(memory error)");
+				exit(1);
 			}
 			i++;
 		}
@@ -100,5 +82,15 @@ char	**ft_split(char const *s, char c)
 			s++;
 	}
 	*(arr + i) = 0;
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char	**arr;
+
+	arr = malloc(sizeof(char *) * (ft_word_num(s, c) + 1));
+	if (!arr)
+		return (0);
+	make_arr(s, c, arr);
 	return (arr);
 }
