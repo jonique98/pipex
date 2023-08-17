@@ -37,12 +37,12 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (arr);
 }
 
-int main()
+int main(int ac, char **av, char **envp)
 {
-	int fd[2];
-	pipe(fd);
-	write(fd[1], "hello", 5);
-	char *str = malloc(100);
-	read(fd[0], str, 100);
-	printf("%s\n", str);
+	ac = 0;
+	av = 0;
+	for(int i = 0; i < 80; i++)
+	{
+		printf("%s\n", envp[i]);
+	}
 }
