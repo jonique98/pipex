@@ -6,7 +6,7 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 07:38:38 by sumjo             #+#    #+#             */
-/*   Updated: 2023/08/19 05:05:13 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/19 05:38:44 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,9 @@ void	ft_free(t_var *var)
 
 void	perror_exit(char *message)
 {
-	perror(message);
+	if (message == 0)
+		write(2, "ac error: 0\n", 12);
+	else
+		perror(message);
 	exit(1);
 }

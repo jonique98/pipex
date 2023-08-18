@@ -6,17 +6,18 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 04:35:31 by sumjo             #+#    #+#             */
-/*   Updated: 2023/08/19 04:53:28 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/19 05:39:24 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
 
-# include <unistd.h>
 # include <stdio.h>
-# include <sys/wait.h>
 # include <stdlib.h>
+# include <sys/wait.h>
+# include <errno.h>
+# include <unistd.h>
 # include <fcntl.h>
 
 typedef struct s_var

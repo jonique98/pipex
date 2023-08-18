@@ -6,7 +6,7 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 04:35:46 by sumjo             #+#    #+#             */
-/*   Updated: 2023/08/19 05:04:59 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/19 05:37:45 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int ac, char **av, char **env)
 	int		pipe_fd[2];
 
 	if (ac != 5)
-		perror_exit("인자가 5개가 아닙니다.");
+		perror_exit(0);
 	open_files(&var, av);
 	get_path(&var, env);
 	get_cmd(&var, av);

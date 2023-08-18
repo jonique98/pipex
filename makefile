@@ -2,41 +2,30 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 NAME = pipex
-SRCS =	$(wildcard *.c)
-OBJECTS = $(SRCS:.c=.o)
-INC = -I./src/
+SRCS = $(wildcard *.c)
 OBJ_DIR = ./obj
+OBJECTS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
+INC = -I ./
 
-BNSNAME = checker
-BNSSRCS = $(wildcard ./bnssrc/*.c)
-BNSOBJECTS = $(BNSSRCS:.c=.o)
-GNLINC = -I./bnssrc/
+RMF = rm -rf
 
-RMF = rm -f
+all: $(NAME)
 
-all : $(NAME)
-
-bonus : $(BNSNAME)
-
-$(NAME) : $(OBJECTS)
+$(NAME): $(OBJECTS)
 	$(CC) $(CFLAGS) -o $@ $^
 
-$(BNSNAME) : $(BNSOBJECTS)
-	$(CC) $(CFLAGS) -o $@ $^
+$(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@ $(INC)
 
-$(OBJ_DIR)/%.o: %.c
+$(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
-	$(CC) $(CFLAGS) $< -o $@
 
-bnssrc/%.o : %.c
-	$(CC) $(CFLAGS) -c $< $(INC) $(GNLINC)
+clean:
+	$(RMF) obj
 
-clean :
-	$(RMF) $(OBJECTS) $(BNSOBJECTS)
+fclean: clean
+	$(RMF) $(NAME)
 
-fclean : clean
-	$(RMF) $(NAME) $(BNSNAME)
+re: fclean all
 
-re : fclean all
-
-.PHONY : clean fclean all re bonus
+.PHONY: clean fclean all re
