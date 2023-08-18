@@ -6,7 +6,7 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 07:38:18 by sumjo             #+#    #+#             */
-/*   Updated: 2023/08/18 07:43:18 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/19 03:52:49 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*return_path(char **env)
 	{
 		if (ft_strncmp("PATH=", env[i], 5) == 0)
 		{
-			arr = strdup(env[i] + 5);
+			arr = ft_strdup(env[i] + 5);
 			return (arr);
 		}
 		i++;
