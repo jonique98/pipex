@@ -6,7 +6,7 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 04:35:31 by sumjo             #+#    #+#             */
-/*   Updated: 2023/08/19 03:53:41 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/19 04:53:28 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	get_path(t_var *var, char **env);
 void	get_cmd(t_var *var, char **av);
 void	check_cmds(t_var *var);
 void	init_pipe(int *pipe_fd);
-void	wait_childs(int pid1, int pid2);
+void	wait_childs(t_var *var);
 
 int		ft_word_len(char const *s, char c);
 char	*ft_inside(char const *s, char c);
@@ -55,5 +55,6 @@ void	get_cmd(t_var *var, char **av);
 void	check_cmd1(t_var *var, char *cmd);
 void	check_cmd2(t_var *var, char *cmd);
 char	*ft_strdup(char *s1);
+void	perror_exit(char *message);
 
 #endif

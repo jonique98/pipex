@@ -6,7 +6,7 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 07:40:16 by sumjo             #+#    #+#             */
-/*   Updated: 2023/08/19 03:48:29 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/19 04:47:50 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,7 @@ void	check_cmd1(t_var *var, char *cmd)
 		free(arr);
 		i++;
 	}
-	perror("cmd error");
-	exit(1);
+	perror_exit("cmd error");
 }
 
 void	check_cmd2(t_var *var, char *cmd)
@@ -60,8 +59,7 @@ void	check_cmd2(t_var *var, char *cmd)
 		free(arr);
 		i++;
 	}
-	perror("cmd error");
-	exit(1);
+	perror_exit("cmd error");
 }
 
 void	check_cmds(t_var *var)

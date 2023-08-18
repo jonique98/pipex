@@ -6,14 +6,16 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 07:40:49 by sumjo             #+#    #+#             */
-/*   Updated: 2023/08/18 07:40:53 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/19 04:53:07 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	wait_childs(int pid1, int pid2)
+void	wait_childs(t_var *var)
 {
-	waitpid(pid1, NULL, 0);
-	waitpid(pid2, NULL, 0);
+	close(var->fd_open);
+	close(var->fd_close);
+	wait(NULL);
+	wait(NULL);
 }

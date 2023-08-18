@@ -6,7 +6,7 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 07:38:38 by sumjo             #+#    #+#             */
-/*   Updated: 2023/08/18 07:43:10 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/19 05:05:13 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,10 @@ void	ft_free(t_var *var)
 {
 	free_env(var);
 	free_cmd(var);
+}
+
+void	perror_exit(char *message)
+{
+	perror(message);
+	exit(1);
 }
