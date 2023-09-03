@@ -6,7 +6,7 @@
 /*   By: sumjo <sumjo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 07:41:08 by sumjo             #+#    #+#             */
-/*   Updated: 2023/08/19 04:55:41 by sumjo            ###   ########.fr       */
+/*   Updated: 2023/08/28 16:17:13 by sumjo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	open_files(t_var *var, char **av)
 {
-	var->fd_open = open(av[1], O_RDONLY);
+	var->fd_open = open(av[1], O_RDONLY, 0777);
 	if (var->fd_open == -1)
 		perror_exit("file1 error");
 	var->fd_close = open(av[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
